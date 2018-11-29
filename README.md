@@ -1,7 +1,9 @@
 # flutter_learn_app
-<<<<<<< HEAD
+
 A Simple APP 
 =======
+
+learn flutter
 
 A new Flutter application.
 

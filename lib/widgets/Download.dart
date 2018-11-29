@@ -7,9 +7,20 @@ class DownloadPage extends StatefulWidget{
   State<StatefulWidget> createState() => _DownloadState();
 }
 
-
 class _DownloadState extends State<DownloadPage>{
   List list = [];
+  
+  Widget show(){
+    if(list.length == 0){
+      return new CircularProgressIndicator();
+    }else{
+      return  new ListView.builder(
+          itemCount: list.length,
+          itemBuilder: (BuildContext context, int position)  {
+        return new Padding(padding: new EdgeInsets.all(3.0), 
+            child: new Text("Row ${list[position]["title"]}"));});
+    }
+  }
   
   @override
   void initState() {
@@ -31,13 +42,7 @@ class _DownloadState extends State<DownloadPage>{
       appBar: AppBar(
         title: Text('Download'),
       ),
-      body: Center(
-        child: new ListView.builder(
-          itemCount: list.length,
-          itemBuilder: (BuildContext context, int position)  {
-            return new Padding(padding: new EdgeInsets.all(3.0), child: new Text("Row ${list[position]["title"]}"));}
-        ),
-      ),
+      body: Center(child:show())
     );
   }
   

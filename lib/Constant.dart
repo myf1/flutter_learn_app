@@ -38,7 +38,11 @@ class Constant{
 
   static const String LISTVIEW = '/listview';
   
-  
+  static const String GRIDVIEW = '/gridview';
   
   static const String drawer_header_image = 'http://www.chinadaily.com.cn/language_tips/images/attachement/jpg/site1/20070814/001125254635082b41be0a.jpg';
+  
+  static const String joke_key = "4b64a8ecad9e95ec320713d482628518";
+  
+  static const String base_url = "http://v.juhe.cn/joke/content/list.php?key="+joke_key;
 }

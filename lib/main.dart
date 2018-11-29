@@ -12,6 +12,7 @@ import 'widgets/Input.dart';
 import 'widgets/Shop.dart';
 import 'widgets/Text.dart';
 import 'widgets/Listview.dart';
+import 'widgets/GridView.dart';
 
 
 void main() {
@@ -34,6 +35,7 @@ void main() {
       Constant.SHOP       : (BuildContext context) => new MyShop(),
       Constant.TEXT       : (BuildContext context) => new MyText(name: 'yf_ma',),
       Constant.LISTVIEW   : (BuildContext context) => new MyListView(),
+      Constant.GRIDVIEW   : (BuildContext context) => new MyGridView(),
     },
     home: _MyScaffold(),
   ));
@@ -89,6 +91,9 @@ class _MyScaffold extends StatelessWidget{
                   new FlatButton(
                       onPressed: (){Navigator.of(context).pushNamed(Constant.LISTVIEW);},
                       child: Text('ListView')),
+                  new FlatButton(
+                      onPressed: (){Navigator.of(context).pushNamed(Constant.GRIDVIEW);},
+                      child: Text('GridView')),
                 ],
               ),
             ),

@@ -21,7 +21,7 @@ class _ThirdPageState extends State<ThirdPage>
       "&page=1&pagesize=20";
   TabController tabController;
   List<Text> _list;
-  JokeBean _jokeBean;
+  JokeBean _jokeBean,_jokeBean1;
 
   @override
   void initState() {
@@ -31,29 +31,23 @@ class _ThirdPageState extends State<ThirdPage>
     _list.add(Text('随机'));
     tabController = new TabController(length: _list.length, vsync: this);
     _loadData(url_new);
+    _loadData(url_random);
   }
 
   Widget showBody() {
-    if (_jokeBean == null) {
-      return new Center(child: new CircularProgressIndicator());
-    } else {
-      if (_jokeBean.error_code != 0) {
-        return Center(
-          child: Text(_jokeBean.reason + "\n" + _bodyText),
-        );
-      } else {
-        return TabBarView(
-          children: <Widget>[
-            getListView(),
-            getListView(),
-          ],
-          controller: tabController,
-        );
-      }
-    }
+      return TabBarView(
+        children: <Widget>[
+          getListView(_jokeBean),
+          getListView(_jokeBean1),
+        ],
+        controller: tabController,
+      );
   }
 
-  Widget getListView() {
+  Widget getListView(JokeBean _jokeBean) {
+    if(_jokeBean == null){
+      return new Center(child: new CircularProgressIndicator());
+    }
     return ListView.builder(
       itemBuilder: (context, index) {
         DataBean dataBean = _jokeBean.result.data.elementAt(index);
@@ -76,8 +70,12 @@ class _ThirdPageState extends State<ThirdPage>
   _loadData(url) async {
     http.Response response = await http.get(url);
     setState(() {
+      if(url == url_new)
+        _jokeBean = JokeBean(response.body);
+      else
+      _jokeBean1 = JokeBean(response.body);
       print("response===>" + response.body);
-      _jokeBean = JokeBean(response.body);
+      
     });
   }
 

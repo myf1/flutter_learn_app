@@ -10,11 +10,11 @@ class JokeBean {
     
     error_code = jsonRes['error_code'];
     reason = jsonRes['reason'];
-    var result = jsonRes['result'];
-    if(result == null) {
+    var resultJson = jsonRes['result'];
+    if(resultJson == null) {
        return ;
     }
-    result = ResultBean(jsonRes["result"]);
+    result = ResultBean(resultJson);
   }
 
   @override

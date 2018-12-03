@@ -5,6 +5,7 @@ import 'FirstPage.dart';
 import 'SecondPage.dart';
 import 'ThirdPage.dart';
 import 'FourthPage.dart';
+import 'Practice.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -20,6 +21,7 @@ class _HomePageState extends State<HomePage> {
     new BottomNavigationBarItem(icon: Icon(Icons.slideshow), title: Text(Constant.show)),
     new BottomNavigationBarItem(icon: Icon(Icons.find_in_page), title: Text(Constant.find)),
     new BottomNavigationBarItem(icon: Icon(Icons.person), title: Text(Constant.me)),
+    new BottomNavigationBarItem(icon: Icon(Icons.equalizer), title: Text(Constant.practise)),
   ];
   
   final _drawerData = <_DrawerItems>[
@@ -46,6 +48,7 @@ class _HomePageState extends State<HomePage> {
           SecondPage(),
           ThirdPage(),
           FourthPage(),
+          Practice(),
         ],
         onPageChanged: (index){
           setState(() {

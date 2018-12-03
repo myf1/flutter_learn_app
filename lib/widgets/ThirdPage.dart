@@ -10,26 +10,33 @@ class ThirdPage extends StatefulWidget {
   _ThirdPageState createState() => _ThirdPageState();
 }
 
-class _ThirdPageState extends State<ThirdPage>
-    with SingleTickerProviderStateMixin {
-  String url_new = Constant.base_url +
-      "&page=2&pagesize=20&sort=asc&time=" +
-      DateTime(2018).millisecondsSinceEpoch.toString().substring(0, 10);
 
-  String url_random = "http://v.juhe.cn/joke/content/text.php?key=" +
-      Constant.joke_key +
-      "&page=1&pagesize=20";
+class _ThirdPageState extends State<ThirdPage> with SingleTickerProviderStateMixin {
+  static var page = 1;
+  String url_new = Constant.base_url + "&page="+ page.toString() +"&pagesize=20&sort=asc&time=" + DateTime(2018).millisecondsSinceEpoch.toString().substring(0, 10);
+  String url_random = "http://v.juhe.cn/joke/content/text.php?key=" + Constant.joke_key + "&page="+page.toString()+"&pagesize=20";
   TabController tabController;
   List<Text> _list;
   JokeBean _jokeBean,_jokeBean1;
+  ScrollController _scrollController;
+  List<ResultBean> _data;
 
+  
   @override
   void initState() {
     super.initState();
     _list = new List<Text>();
+    _data = new List();
     _list.add(Text('最新'));
     _list.add(Text('随机'));
     tabController = new TabController(length: _list.length, vsync: this);
+    _scrollController = new ScrollController();
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels == _scrollController.position.maxScrollExtent) {
+        print('滑动到了最底部');
+        _onMore();
+      }
+    });
     _loadData(url_new);
     _loadData(url_random);
   }
@@ -48,8 +55,13 @@ class _ThirdPageState extends State<ThirdPage>
     if(_jokeBean == null){
       return new Center(child: new CircularProgressIndicator());
     }
-    return ListView.builder(
-      itemBuilder: (context, index) {
+    if(_jokeBean.result == null){
+      return new Center(child: Text(_jokeBean.reason));
+    }
+    return RefreshIndicator(
+        onRefresh: _onRefresh,
+        child: ListView.builder(
+        itemBuilder: (context, index) {
         DataBean dataBean = _jokeBean.result.data.elementAt(index);
         return Card(
           elevation: 3.3,
@@ -63,20 +75,51 @@ class _ThirdPageState extends State<ThirdPage>
           ),
         );
       },
-      itemCount: _jokeBean.result.data.length,
-    );
+      itemCount: _jokeBean.result.data.length,controller: _scrollController,
+      ),
+    );   
   }
 
-  _loadData(url) async {
+  
+  
+  _loadData(String url) async {
     http.Response response = await http.get(url);
     setState(() {
+      print("response===>" + response.body);
+      
       if(url == url_new)
         _jokeBean = JokeBean(response.body);
       else
-      _jokeBean1 = JokeBean(response.body);
-      print("response===>" + response.body);
+        _jokeBean1 = JokeBean(response.body);
+      
       
     });
+  }
+
+
+  /**
+   * 下拉刷新方法,为list重新赋值
+   */
+  Future<Null> _onRefresh() async{
+    setState(() {
+      page = 0;
+      print("onRefresh--->"+page.toString());
+    });
+    _loadData(url_new);
+    _loadData(url_random);
+  }
+
+
+  /**
+   * 上拉加载
+   */
+  Future<Null> _onMore() async{
+    setState(() {
+      page++;
+      print("onMore--->"+page.toString());
+    });
+    _loadData(url_new);
+    _loadData(url_random);
   }
 
   //首次运行中间文字显示点击效果

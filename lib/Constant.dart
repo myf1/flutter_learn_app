@@ -3,6 +3,7 @@ class Constant{
   
   ///title
   static const home = "首页";
+  static const practise = "练习";
   static const show = "展示";
   static const find = "发现";
   static const me = "我的";
@@ -39,6 +40,8 @@ class Constant{
   static const String LISTVIEW = '/listview';
   
   static const String GRIDVIEW = '/gridview';
+  
+  static const String STACK = '/stack';
   
   static const String drawer_header_image = 'http://www.chinadaily.com.cn/language_tips/images/attachement/jpg/site1/20070814/001125254635082b41be0a.jpg';
   

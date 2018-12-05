@@ -43,6 +43,10 @@ class Constant{
   
   static const String STACK = '/stack';
   
+  static const String HTTP = '/http';
+  
+  static const String VIDEO = '/video';
+  
   static const String drawer_header_image = 'http://www.chinadaily.com.cn/language_tips/images/attachement/jpg/site1/20070814/001125254635082b41be0a.jpg';
   
   static const String joke_key = "4b64a8ecad9e95ec320713d482628518";

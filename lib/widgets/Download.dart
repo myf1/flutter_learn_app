@@ -20,6 +20,7 @@ class _DownloadState extends State<DownloadPage>{
         return new Padding(padding: new EdgeInsets.all(3.0), 
             child: new Text("Row ${list[position]["title"]}"));});
     }
+    
   }
   
   @override

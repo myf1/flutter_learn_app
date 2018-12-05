@@ -13,6 +13,8 @@ import 'widgets/Text.dart';
 import 'widgets/Listview.dart';
 import 'widgets/GridView.dart';
 import 'widgets/StackTest.dart';
+import 'widgets/http_test.dart';
+import 'widgets/Video_test.dart';
 
 /// @auther:  yf_ma
 /// @version:  1.0
@@ -39,6 +41,8 @@ void main() {
         Constant.LISTVIEW   : (BuildContext context) => new MyListView(),
         Constant.GRIDVIEW   : (BuildContext context) => new MyGridView(),
         Constant.STACK      : (BuildContext context) => new MyStack(),
+        Constant.HTTP       : (BuildContext context) => new MyHttp(),
+        Constant.VIDEO      : (BuildContext context) => new MyVideo(),
       },
   ));
 }

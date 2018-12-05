@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class MyText extends StatelessWidget {
   MyText({this.name});
@@ -60,8 +61,68 @@ class MyText extends StatelessWidget {
                       fontStyle: FontStyle.normal))
             ],
           )),
+          SizedBox(
+            height: 10.0,
+          ),
+          RaisedButton(onPressed: (){
+            Fluttertoast.showToast(
+                msg: "toast",
+                bgcolor: "#aabbee",
+                gravity: ToastGravity.CENTER,
+                textcolor: "#00000",
+                toastLength: Toast.LENGTH_LONG);
+          },child: Text('test toast'),),
+          SizedBox(
+            height: 10.0,
+          ),
+          new InkWell(
+            child:Center(child:new Text('Test InkWell',
+                    style: new TextStyle(
+                      color: Colors.black45, 
+                      fontWeight: FontWeight.bold, 
+                      fontSize: 15.0,
+                    ),
+                    textAlign: TextAlign.center,
+                    textDirection: TextDirection.ltr,
+                    textScaleFactor: 2.0,
+                    overflow: TextOverflow.ellipsis,
+                    locale: Localizations.localeOf(context),
+                    maxLines: 1,
+                  ),),
+            onTap: (){
+              Fluttertoast.showToast(msg: "InkWell onTap()");
+            },
+            onDoubleTap: (){
+              Fluttertoast.showToast(msg: "InkWell onDoubleTap()");
+            },
+            onLongPress: (){
+              Fluttertoast.showToast(msg: "InkWell onLongPress()");
+            },
+            highlightColor: Colors.amber,
+            borderRadius: BorderRadius.all(Radius.circular(30.0)),
+            customBorder: Border.all(color: Colors.red,width: 5.0,style: BorderStyle.solid),
+            splashColor: Colors.blue,
+          ),
+          SizedBox(
+            height: 10.0,
+          ),
+          new Ink(
+            child: Center(child:Text('Test Ink',style: TextStyle(fontSize: 25.0,color: Colors.white),textAlign: TextAlign.center,),),
+            width: MediaQuery.of(context).size.width,
+            height: 50.0,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(50.0)),
+              gradient: LinearGradient(colors:colors)),
+          ),
         ],
       )),
     );
   }
+
+
+  var colors =<Color>[
+    Colors.red,
+    Colors.blue,
+    Colors.yellow,
+  ];
 }

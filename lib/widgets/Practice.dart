@@ -25,6 +25,8 @@ class _MyScaffold extends StatelessWidget{
     Constant.LISTVIEW,
     Constant.GRIDVIEW,
     Constant.STACK,
+    Constant.HTTP,
+    Constant.VIDEO,
   ];
 
 

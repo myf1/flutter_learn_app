@@ -14,8 +14,8 @@ class MyContainer extends StatelessWidget {
           Container(  
             padding: const EdgeInsets.all(8.0),
             margin: const EdgeInsets.symmetric(vertical: 10.0),
-            height: 100.0,
-            width: 100.0,
+            height: 50.0,
+            width: 50.0,
             color: Colors.green,
           ),
           SizedBox(height: 20.0,),
@@ -24,7 +24,7 @@ class MyContainer extends StatelessWidget {
             margin: const EdgeInsets.symmetric(horizontal: 15.0),
             constraints: BoxConstraints.expand(
                 height: Theme.of(context).textTheme.display1.fontSize * 1.1 +
-                    100.0),
+                    50.0),
             color: Colors.transparent,
             alignment: Alignment.center,
             child: Text(
